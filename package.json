@@ -1,0 +1,42 @@
+{
+  "name": "graphql-fields-to-relations",
+  "description": "Resolve your graphql fields to (MikroOrm) relations",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/driescroons/pling"
+  },
+  "license": "MIT",
+  "author": "Dries Croons",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts --fix"
+  },
+  "dependencies": {
+    "graphql": "^15.3.0",
+    "graphql-fields": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/graphql-fields": "^1.3.3",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "nodemon": "^1.18.11",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build && yarn run lint"
+    }
+  }
+}
