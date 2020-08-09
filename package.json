@@ -2,6 +2,11 @@
   "name": "graphql-fields-to-relations",
   "description": "Resolve your graphql fields to (MikroOrm) relations",
   "version": "1.0.0",
+  "keywords": [
+    "graphql-fields",
+    "mikro-orm",
+    "graphql"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/driescroons/graphql-fields-to-relations"
