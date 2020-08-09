@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/driescroons/pling"
+    "url": "https://github.com/driescroons/graphql-fields-to-relations"
   },
   "license": "MIT",
   "author": "Dries Croons",
@@ -38,5 +38,8 @@
     "hooks": {
       "pre-commit": "yarn build && yarn run lint"
     }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
