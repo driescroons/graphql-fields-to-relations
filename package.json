@@ -1,7 +1,7 @@
 {
   "name": "graphql-fields-to-relations",
   "description": "Resolve your graphql fields to (MikroOrm) relations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "graphql-fields",
     "mikro-orm",
