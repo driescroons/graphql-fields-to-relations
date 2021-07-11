@@ -3,7 +3,7 @@ import graphqFields from 'graphql-fields';
 
 const fieldsToRelations = (
   info: GraphQLResolveInfo,
-  options: { depth?: number; root?: string } = { depth: undefined, root: '' },
+  options: { depth?: number; root?: string, excludeFields?: string[] } = { depth: undefined, root: '', excludeFields: [] },
 ): string[] => {
   const paths: string[][] = [];
 
@@ -32,10 +32,10 @@ const fieldsToRelations = (
   };
 
   const value = !options.root
-    ? graphqFields(info)
+    ? graphqFields(info, {}, {excludedFields : options.excludeFields})
     : options.root.split('.').reduce(function (p, prop) {
         return p[prop];
-      }, graphqFields(info));
+      }, graphqFields(info, {}, {excludedFields : options.excludeFields}));
 
   nested(value, !!options.root ? options.root.split('.').pop() : undefined);
 
