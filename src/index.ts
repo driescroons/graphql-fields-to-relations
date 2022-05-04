@@ -3,16 +3,21 @@ import graphqFields from 'graphql-fields';
 
 const fieldsToRelations = (
   info: GraphQLResolveInfo,
-  options: { depth?: number; root?: string; excludeFields?: string[] } = {
+  options: { depth?: number; root?: string; excludeFields?: string[]; excludeFieldsWithArguments?: boolean } = {
     depth: undefined,
     root: '',
     excludeFields: [],
+    excludeFieldsWithArguments: false,
   },
 ): string[] => {
   const paths: string[][] = [];
 
   const nested = (field: any, key: string = undefined as any, deep = 0, parent: string[] = []) => {
     if (Object.values(field).length === 0) {
+      return;
+    }
+
+    if (options.excludeFieldsWithArguments && Object.keys(field).includes('__arguments')) {
       return;
     }
 
@@ -36,10 +41,18 @@ const fieldsToRelations = (
   };
 
   const value = !options.root
-    ? graphqFields(info, {}, { excludedFields: options.excludeFields })
+    ? graphqFields(
+        info,
+        {},
+        { excludedFields: options.excludeFields, processArguments: options.excludeFieldsWithArguments },
+      )
     : options.root.split('.').reduce(function (p, prop) {
         return p[prop];
-      }, graphqFields(info, {}, { excludedFields: options.excludeFields }));
+      }, graphqFields(
+        info,
+        {},
+        { excludedFields: options.excludeFields, processArguments: options.excludeFieldsWithArguments },
+      ));
 
   nested(value, !!options.root ? options.root.split('.').pop() : undefined);
 
