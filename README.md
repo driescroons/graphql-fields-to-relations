@@ -28,6 +28,22 @@ const fieldsToRelations = require('fieldsToRelations');
 const relations = fieldsToRelations(info);
 ```
 
+In the case a field isn't actually a relation in your database you would like to exclude those fields. To exclude the fields pass an array to the options argument
+
+```
+const relations = fieldsToRelations(info, {
+  excludeFields: ['user.data']
+})
+```
+
+When the field has arguments it is likely the child resolver handles the relation. In that case you would like to exclude all fields that have arguments
+
+```
+const relations = fieldsToRelations(info, {
+  excludeFieldsWithArguments: true
+})
+```
+
 ## 🔍 Example
 
 As an example, take following query:
